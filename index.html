@@ -2,7 +2,7 @@
   <head>
     <title>Simon Dice</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="sweetalert2.css">
     <link rel="stylesheet" href="simon.css">
     <meta charset="utf-8" />
   </head>
@@ -41,7 +41,7 @@
         <div class="key" data-key="77">m</div>
       </div>
     </div>
-    <script src="sweetalert.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
     <script>
       const niveles = 15
       let teclas = generarTeclas(niveles)
@@ -82,18 +82,17 @@
             activate(ev.keyCode, { fail: true })
             window.removeEventListener('keydown', onkeydown)
             swal({
-              title: 'Perdiste',
-              text: '¿Quieres jugar de nuevo?',
+              title: 'Perdiste!',
+              text: '¿Quiéres jugar de nuevo?',
               showCancelButton: true,
-              confirmButtonText: 'Sí',
-              cancelButtonText: 'No',
-              closeOnConfirm: true
-            }, function (ok) {
-              if (ok) {
-                teclas = generarTeclas(niveles)
-                siguienteNivel(0)
+            }).then(
+              function (ok) {
+                if (ok) {
+                  teclas = generarTeclas(niveles)
+                   siguienteNivel(0)
+                }
               }
-            })
+            )
           }
         }
       }
